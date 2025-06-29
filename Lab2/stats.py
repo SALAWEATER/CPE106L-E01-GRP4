@@ -24,6 +24,10 @@ def median():
         for word in words:
             numbers.append(float(word))
 
+    if len(numbers) == 0:
+        print("The median is 0")
+        return 0
+    
     #Sort the list and print the number at its midpoint
     numbers.sort()
     midpoint = len(numbers) // 2
@@ -42,6 +46,10 @@ def mode():
         for word in wordsInLine:
             words.append(word.upper())
 
+    if len(words) == 0:
+        print("The mode is 0")
+        return 0
+    
     # Obtain the set of unique words and their
     # frequencies, saving these associations in
     # a dictionary
@@ -62,7 +70,6 @@ def mode():
         if theDictionary[key] == theMaximum:
             print("The mode is", key)
             break
-    return key[0] if theMaximum > 1 else "No mode found"
 
 def mean():
     numbers = []
@@ -73,7 +80,7 @@ def mean():
     f.close()
 
     if len(numbers) == 0:
-        print("No numbers found.")
+        print("The mean is 0")
     else:
         avg = sum(numbers) / len(numbers)
         print("The mean is", avg)
