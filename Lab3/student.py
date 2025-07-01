@@ -38,6 +38,21 @@ class Student(object):
         return "Name: " + self.name  + "\nScores: " + \
                " ".join(map(str, self.scores))
 
+    def __eq__(self, other):
+        if isinstance(other, Student):
+            return self.name == other.name and self.scores == other.scores
+        return False
+
+    def __lt__(self, other):
+        if isinstance(other, Student):
+            return self.getAverage() < other.getAverage()
+        return NotImplemented
+    
+    def __ge__(self, other):
+        if isinstance(other, Student):
+            return self.getAverage() >= other.getAverage()
+        return NotImplemented
+
 def main():
     """A simple test."""
     student = Student("Ken", 5)
