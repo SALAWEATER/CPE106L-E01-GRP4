@@ -33,8 +33,10 @@ class Bank:
                     break
 
     def __str__(self):
-        """Returns the string representation of the bank."""
-        return "\n".join(map(str, self.accounts.values()))
+        """Returns the string representation of the bank in alphabetical order by account name, then pin."""
+        # Sort by name, then pin for true alphabetical order
+        sorted_accounts = sorted(self.accounts.values(), key=lambda acc: (acc.getName(), acc.getPin()))
+        return "\n".join(map(str, sorted_accounts))
 
     def makeKey(self, name, pin):
         """Returns a key for the account."""
@@ -69,8 +71,7 @@ class Bank:
 
     def getKeys(self):
         """Returns a sorted list of keys."""
-        # Exercise
-        return []
+        return sorted(self.accounts.keys())
 
     def save(self, fileName = None):
         """Saves pickled accounts to a file.  The parameter
@@ -119,6 +120,9 @@ def main(number = 10, fileName = None):
     the optional file name argument or from the optional
     number."""
     testAccount()
+    bank = createBank(number)  # This creates multiple accounts
+    print("\nBank with multiple accounts:")
+    print(bank)
 ##    if fileName:
 ##        bank = Bank(fileName)
 ##    else:
@@ -126,6 +130,6 @@ def main(number = 10, fileName = None):
 ##    print(bank)
 
 if __name__ == "__main__":
-    main()
+    main(5)
 
-   
+
