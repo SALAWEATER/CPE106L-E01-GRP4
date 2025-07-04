@@ -15,11 +15,10 @@ class SavingsAccount:
         self.balance = balance
 
     def __str__(self):
-        """Returns the string rep."""
-        result =  'Name:    ' + self.name + '\n' 
-        result += 'PIN:     ' + self.pin + '\n' 
-        result += 'Balance: ' + str(self.balance)
-        return result
+        """Returns the string representation of the account."""
+        return (f'Name:    {self.name}\n'
+                f'PIN:     {self.pin}\n'
+                f'Balance: {self.balance}')
 
     def getBalance(self):
         """Returns the current balance."""
@@ -37,20 +36,18 @@ class SavingsAccount:
         """If the amount is valid, adds it
         to the balance and returns None;
         otherwise, returns an error message."""
+        if amount < 0:
+            return "Error: Deposit amount must be positive"
         self.balance += amount
-        return None
 
     def withdraw(self, amount):
-        """If the amount is valid, sunstract it
-        from the balance and returns None;
-        otherwise, returns an error message."""
+        """Withdraws amount from account and returns status message."""
         if amount < 0:
-            return "Amount must be >= 0"
+            return "Error: Withdrawal amount must be positive"
         elif self.balance < amount:
-            return "Insufficient funds"
+            return "Error: Insufficient funds"
         else:
             self.balance -= amount
-            return None
 
     def computeInterest(self):
         """Computes, deposits, and returns the interest."""
